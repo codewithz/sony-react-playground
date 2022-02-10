@@ -2,25 +2,27 @@ import React, { useState } from 'react'
 
 export default function CartProductComponent(props) {
 
-    const [productName, setProductName] = useState(props.name);
-    const [quantity, setQuantity] = useState(props.quantity);
-    const [productId, setProductId] = useState(props.id);
+    const { name, quantity, id } = props.product;
+
+    // const [productName, setProductName] = useState(name);
+    // const [quantity, setQuantity] = useState(productQuntity);
+    // const [productId, setProductId] = useState(id);
 
     const styles = {
         fontSize: 20,
         fontWeight: 'bold'
     }
 
-    const handleIncrement = () => {
-        setQuantity(quantity + 1);
-    }
+    // const handleIncrement = () => {
+    //     setQuantity(quantity + 1);
+    // }
 
-    const handleDecrement = () => {
-        if (quantity >= 1) {
-            setQuantity(quantity - 1);
-        }
+    // const handleDecrement = () => {
+    //     if (quantity >= 1) {
+    //         setQuantity(quantity - 1);
+    //     }
 
-    }
+    // }
 
     const formatQuantity = () => quantity == 0 ? 'Zero' : quantity;
 
@@ -34,10 +36,10 @@ export default function CartProductComponent(props) {
 
     return (
         <div>
-            <h4>{productName}</h4>
+            <h4>{name}</h4>
             <button
                 className="btn btn-secondary btn-sm m-2"
-                onClick={handleIncrement}
+                onClick={() => props.onIncrement(props.product)}
             >
                 +
             </button>
@@ -50,14 +52,14 @@ export default function CartProductComponent(props) {
 
             <button
                 className="btn btn-info btn-sm m-2"
-                onClick={handleDecrement}
+                onClick={() => props.onDecrement(props.product)}
             >
                 -
             </button>
 
             <button
                 className="btn btn-danger btn-sm m-2"
-                onClick={() => props.onRemove(productId)}>
+                onClick={() => props.onRemove(id)}>
                 Remove From Cart
             </button>
         </div>

@@ -24,16 +24,42 @@ export default function ProductListComponent() {
         setProducts(filteredProductList);
     }
 
+    const resetCart = () => {
+        const resetProductList = products.map((product) => {
+            product.quantity = 0
+            return product;
+        });
+
+        setProducts(resetProductList);
+    }
+
+    const handleIncrement = (product) => {
+        const productsClone = [...products];
+        const index = productsClone.indexOf(product);
+        productsClone[index] = { ...product };
+        productsClone[index].quantity++;
+        setProducts(productsClone);
+    }
+
+    const handleDecrement = (product) => {
+        const productsClone = [...products];
+        const index = productsClone.indexOf(product);
+        productsClone[index] = { ...product };
+        productsClone[index].quantity--;
+        setProducts(productsClone);
+    }
+
     return (
         <div>
+            <button className="btn btn-success m-2 btn-sm" onClick={resetCart}>Reset</button>
             {
                 products.map((product) =>
                     <CartProductComponent
                         key={product.id}
-                        name={product.name}
-                        quantity={product.quantity}
                         onRemove={removeFromCart}
-                        id={product.id}
+                        product={product}
+                        onIncrement={handleIncrement}
+                        onDecrement={handleDecrement}
 
                     />
                 )
