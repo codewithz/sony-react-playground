@@ -4,6 +4,8 @@ import NameComponent from './NameComponent';
 import { NameFunctionalComponent } from './NameFunctionalComponent';
 import CompanyComponent from './CompanyComponent';
 import TickerComponent from './TickerComponent';
+import NameChangeFC from './NameChangeFC';
+import CounterComponent from './CounterComponent';
 
 
 export default function UseCaseOne() {
@@ -20,6 +22,10 @@ export default function UseCaseOne() {
             <CompanyComponent />
             <hr />
             <TickerComponent />
+            <hr />
+            <NameChangeFC />
+            <hr />
+            <CounterComponent />
 
         </div>
     )
