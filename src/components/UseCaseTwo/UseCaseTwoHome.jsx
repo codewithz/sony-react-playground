@@ -1,8 +1,13 @@
 import React from 'react'
 import ProductListComponent from './ProductListComponent'
+import CartProductComponent from './CartProductComponent'
 
 export default function UseCaseTwoHome() {
     return (
-        <ProductListComponent />
+        <div>
+            <ProductListComponent />
+            <br />
+
+        </div>
     )
 }
