@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Products(props) {
 
@@ -19,7 +20,7 @@ export default function Products(props) {
             <ul>
                 {products.map((product) => (
                     <li key={product.id}>
-                        <a href={`/products/${product.id}`}>{product.name}</a>
+                        <Link to={`/products/${product.id}`}>{product.name}</Link>
                     </li>
                 ))
                 }
