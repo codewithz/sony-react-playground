@@ -31,6 +31,19 @@ export default function PostAPIComponent() {
         setPosts(postsClone);
     }
 
+    const handleUpdate = async (post) => {
+        post.title = "Updated Post Title"
+
+        const promise = axios.put(apiEndPoint + "/" + post.id, post);
+        const result = await promise;
+        console.log(result);
+
+        const postsClone = [...posts];
+        const index = postsClone.indexOf(post);
+        postsClone[index] = { ...post }
+        setPosts(postsClone);
+    }
+
 
     return (
         <div>
@@ -54,7 +67,9 @@ export default function PostAPIComponent() {
                             <tr key={post.id}>
                                 <td>{post.title}</td>
                                 <td>
-                                    <button className="btn btn-info btn-sm">
+                                    <button
+                                        onClick={() => handleUpdate(post)}
+                                        className="btn btn-info btn-sm">
                                         Update
                                     </button>
                                 </td>
