@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default function PostAPIComponent() {
 
+    const apiEndPoint = 'https://jsonplaceholder.typicode.com/posts'
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -11,17 +12,27 @@ export default function PostAPIComponent() {
     })
 
     const getPosts = async () => {
-        const promise = axios.get('https://jsonplaceholder.typicode.com/posts');
+        const promise = axios.get(apiEndPoint);
         const result = await promise;
         const { data } = result;
         setPosts(data);
 
     }
 
+    const handleAdd = async () => {
+
+        const obj = { title: 'A', body: 'B' }
+        const promise = axios.post(apiEndPoint, obj);
+        const result = await promise;
+        console.log(result)
+    }
+
 
     return (
         <div>
-            <button className="btn btn-primary" style={{ marginBottom: 20 }}>
+            <button
+                onClick={handleAdd}
+                className="btn btn-primary" style={{ marginBottom: 20 }}>
                 Add
             </button>
 
