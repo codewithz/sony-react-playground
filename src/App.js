@@ -9,6 +9,7 @@ import Posts from './components/RoutingApp/Posts';
 import Dashboard from './components/RoutingApp/admin/Dashboard';
 import ProductDetails from './components/RoutingApp/ProductDetails';
 import NotFound from './components/RoutingApp/NotFound';
+import Counter from './components/UseEffectExample/Counter';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <div>
           <Switch>
             <Route path="/products/:id" component={ProductDetails} />
+            <Route path="/counter" component={Counter} />
             <Route path="/products" render={(props) => <Products sortBy="newest" {...props} />} />
             <Route path="/posts/:year?/:month?" component={Posts} />
             <Route path="/not-found" component={NotFound} />
