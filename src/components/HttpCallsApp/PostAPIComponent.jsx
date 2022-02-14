@@ -7,10 +7,17 @@ export default function PostAPIComponent() {
 
     useEffect(() => {
         //pending > resolved (success) OR rejected (failure)
-        const promise = axios.get('https://jsonplaceholder.typicode.com/posts');
-        console.log(promise);
-
+        getPosts();
     })
+
+    const getPosts = async () => {
+        const promise = axios.get('https://jsonplaceholder.typicode.com/posts');
+        const result = await promise;
+        const { data } = result;
+        setPosts(data);
+
+    }
+
 
     return (
         <div>
