@@ -7,8 +7,13 @@ export default function Counter() {
 
     //componentDidMount, componentDidUpdate,componentWillUnmount
     useEffect(() => {
-        document.title = `${name} have clicked ${count} times`
-    })
+        document.title = `${name} have clicked ${count} times`;
+
+        return () => {
+            //here we write the code supposed to go in componentWillUnmount
+            console.log("Clean Up");
+        }
+    }, []);
 
     const handleInput = (event) => {
         setName(event.target.value)

@@ -28,6 +28,9 @@ export default function Navbar() {
                     <li class="nav-item">
                         <NavLink className="nav-link" to="/counter">Counter</NavLink>
                     </li>
+                    <li class="nav-item">
+                        <NavLink className="nav-link" to="/posts-api">HTTP API</NavLink>
+                    </li>
 
                 </ul>
             </div>

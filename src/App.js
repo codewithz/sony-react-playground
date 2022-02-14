@@ -10,6 +10,7 @@ import Dashboard from './components/RoutingApp/admin/Dashboard';
 import ProductDetails from './components/RoutingApp/ProductDetails';
 import NotFound from './components/RoutingApp/NotFound';
 import Counter from './components/UseEffectExample/Counter';
+import PostAPIComponent from './components/HttpCallsApp/PostAPIComponent';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <div>
           <Switch>
             <Route path="/products/:id" component={ProductDetails} />
+            <Route path="/posts-api" component={PostAPIComponent} />
             <Route path="/counter" component={Counter} />
             <Route path="/products" render={(props) => <Products sortBy="newest" {...props} />} />
             <Route path="/posts/:year?/:month?" component={Posts} />
