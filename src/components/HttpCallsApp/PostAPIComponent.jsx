@@ -9,7 +9,7 @@ export default function PostAPIComponent() {
     useEffect(() => {
         //pending > resolved (success) OR rejected (failure)
         getPosts();
-    })
+    }, [])
 
     const getPosts = async () => {
         const promise = axios.get(apiEndPoint);
@@ -24,7 +24,11 @@ export default function PostAPIComponent() {
         const obj = { title: 'A', body: 'B' }
         const promise = axios.post(apiEndPoint, obj);
         const result = await promise;
-        console.log(result)
+
+        console.log(result.data, '--', result.status)
+        const newPost = result.data;
+        const postsClone = [newPost, ...posts];
+        setPosts(postsClone);
     }
 
 
