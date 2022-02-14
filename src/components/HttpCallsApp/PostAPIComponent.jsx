@@ -1,8 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 
 export default function PostAPIComponent() {
 
     const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        //pending > resolved (success) OR rejected (failure)
+        const promise = axios.get('https://jsonplaceholder.typicode.com/posts');
+        console.log(promise);
+
+    })
 
     return (
         <div>
