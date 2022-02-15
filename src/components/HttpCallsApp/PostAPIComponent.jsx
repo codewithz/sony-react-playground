@@ -4,6 +4,7 @@ import axios from 'axios';
 export default function PostAPIComponent() {
 
     const apiEndPoint = 'https://jsonplaceholder.typicode.com/posts'
+    // const apiEndPoint = 'http://codewithz.work:3900/api/genres';
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -44,6 +45,17 @@ export default function PostAPIComponent() {
         setPosts(postsClone);
     }
 
+    const handleDelete = async (post) => {
+        const promise = axios.delete(apiEndPoint + "/" + post.id);
+        const result = await promise;
+
+        console.log(result)
+
+        const updatedPosts = posts.filter(p => p.id !== post.id);
+        setPosts(updatedPosts);
+    }
+
+
 
     return (
         <div>
@@ -74,7 +86,9 @@ export default function PostAPIComponent() {
                                     </button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-danger btn-sm">
+                                    <button
+                                        onClick={() => handleDelete(post)}
+                                        className="btn btn-danger btn-sm">
                                         Delete
                                     </button>
                                 </td>
