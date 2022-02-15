@@ -1,21 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
+import http from '../service/HttpService';
 
-
-axios.interceptors.response.use(null, error => {
-
-    const expectedError =
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status < 500;
-
-    if (!expectedError) {
-        console.log("Logging the error", error);
-        alert('An unexpected error occurred');
-    }
-
-    return Promise.reject(error);
-})
 
 export default function PostAPIComponent() {
 
@@ -29,7 +14,7 @@ export default function PostAPIComponent() {
     }, [])
 
     const getPosts = async () => {
-        const promise = axios.get(apiEndPoint);
+        const promise = http.get(apiEndPoint);
         const result = await promise;
         const { data } = result;
         setPosts(data);
@@ -39,7 +24,7 @@ export default function PostAPIComponent() {
     const handleAdd = async () => {
 
         const obj = { title: 'A', body: 'B' }
-        const promise = axios.post(apiEndPoint, obj);
+        const promise = http.post(apiEndPoint, obj);
         const result = await promise;
 
         console.log(result.data, '--', result.status)
@@ -51,7 +36,7 @@ export default function PostAPIComponent() {
     const handleUpdate = async (post) => {
         post.title = "Updated Post Title"
 
-        const promise = axios.put(apiEndPoint + "/" + post.id, post);
+        const promise = http.put(apiEndPoint + "/" + post.id, post);
         const result = await promise;
         console.log(result);
 
@@ -64,7 +49,7 @@ export default function PostAPIComponent() {
     const handleDelete = async (post) => {
 
         try {
-            const promise = axios.delete(apiEndPoint + "/test/" + post.id);
+            const promise = http.delete(apiEndPoint + "/test/" + post.id);
             const result = await promise;
             const updatedPosts = posts.filter(p => p.id !== post.id);
             setPosts(updatedPosts);
