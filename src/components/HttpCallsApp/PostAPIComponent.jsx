@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import http from '../service/HttpService';
+import config from '../../config.json';
 
 
 export default function PostAPIComponent() {
 
-    const apiEndPoint = 'https://jsonplaceholder.typicode.com/posts'
-    // const apiEndPoint = 'http://codewithz.work:3900/api/genres';
+    const { apiEndPoint } = config;
+
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
