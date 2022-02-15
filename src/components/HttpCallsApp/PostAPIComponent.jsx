@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
+
+axios.interceptors.response.use(null, error => {
+
+    const expectedError =
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500;
+
+    if (!expectedError) {
+        console.log("Logging the error", error);
+        alert('An unexpected error occurred');
+    }
+
+    return Promise.reject(error);
+})
+
 export default function PostAPIComponent() {
 
     const apiEndPoint = 'https://jsonplaceholder.typicode.com/posts'
@@ -48,12 +64,13 @@ export default function PostAPIComponent() {
     const handleDelete = async (post) => {
 
         try {
-            const promise = axios.delete("z" + apiEndPoint + "/" + post.id);
+            const promise = axios.delete(apiEndPoint + "/test/" + post.id);
             const result = await promise;
             const updatedPosts = posts.filter(p => p.id !== post.id);
             setPosts(updatedPosts);
         }
         catch (error) {
+            console.log("HANDLE DELETE CATCH BLOCK");
             //Expected  (404: not found, 400: bad message) - CLIENT ERRORS
             // --> Display a specific error message
             //
@@ -64,10 +81,7 @@ export default function PostAPIComponent() {
             //Unexpected (Network Down, Server Down, DB Down, Bug)
             //--> Log it
             //--> Display a generic message
-            else {
-                console.log("Logging the error", error);
-                alert('Something failed while deleting the post');
-            }
+
         }
 
 
