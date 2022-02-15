@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import http from '../service/HttpService';
 import config from '../../config.json';
+import { toast } from 'react-toastify';
 
 
 export default function PostAPIComponent() {
@@ -15,10 +16,11 @@ export default function PostAPIComponent() {
     }, [])
 
     const getPosts = async () => {
-        const promise = http.get(apiEndPoint);
+        const promise = http.get("Z" + apiEndPoint);
         const result = await promise;
         const { data } = result;
         setPosts(data);
+        toast.success("Data loaded successfully");
 
     }
 

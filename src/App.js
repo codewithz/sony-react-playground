@@ -3,6 +3,8 @@ import UseCaseTwoHome from './components/UseCaseTwo/UseCaseTwoHome';
 import './App.css';
 import Navbar from './components/RoutingApp/Navbar';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 import Products from './components/RoutingApp/Products';
 import Home from './components/RoutingApp/Home';
 import Posts from './components/RoutingApp/Posts';
@@ -12,11 +14,14 @@ import NotFound from './components/RoutingApp/NotFound';
 import Counter from './components/UseEffectExample/Counter';
 import PostAPIComponent from './components/HttpCallsApp/PostAPIComponent';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
 
+      <div className="App">
+        <ToastContainer />
         <Navbar />
         <div>
           <Switch>
